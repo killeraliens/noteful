@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 import './FolderList.css'
 
-export default function FolderList(props) {
+function FolderList(props) {
   let folderLinks;
 
   props.folders.length > 0
@@ -28,4 +28,8 @@ export default function FolderList(props) {
   )
 }
 
+FolderList.defaultProps = {
+  folders: []
+}
 
+export default FolderList

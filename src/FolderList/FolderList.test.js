@@ -11,7 +11,7 @@ describe('FolderList', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <BrowserRouter>
-        <FolderList folders={Folders.folders}/>
+        <FolderList />
       </BrowserRouter>,
     div);
     ReactDOM.unmountComponentAtNode(div);
