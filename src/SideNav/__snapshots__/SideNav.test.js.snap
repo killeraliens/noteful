@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideNav renders its children 1`] = `
+<div
+  className="SideNav"
+>
+  <div>
+    test
+  </div>
+</div>
+`;
