@@ -29,11 +29,12 @@ class App extends Component {
     // console.log(notes)
     return (
       <div className="App">
-        <Header/>
-        <SideNav folders={folders} notes={notes}/>
+        <nav>
+          <SideNav folders={folders} notes={notes}/>
+        </nav>
         <main>
+          <Header/>
           <Switch>
-
             <Route exact path='/' render={(routeProps) => {
               return(
                 <NoteList

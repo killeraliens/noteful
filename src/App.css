@@ -1,5 +1,23 @@
 .App {
   text-align: center;
+  display: block;
+}
+
+.App > nav {
+  width: 100%;
+}
+
+.App li {
+  list-style: none;
+}
+
+@media screen and (min-width: 600px) {
+  .App {
+    display: flex;
+  }
+  .App > main {
+    width: 80vw;
+  }
 }
 
 

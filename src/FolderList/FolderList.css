@@ -1,3 +1,8 @@
-.FolderLink.active {
+.FolderList__li {
+  font-size: 22px;
+}
+
+.FolderList__li__nav-link.active {
   background-color: lightblue;
 }
+
