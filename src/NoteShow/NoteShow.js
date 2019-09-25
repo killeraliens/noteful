@@ -1,13 +1,19 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
 
-function NoteShow(props) {
-  console.log(props)
+
+export default function NoteShow(props) {
+  //console.log(props)
   return(
     <div>
-      Note Stuff
+      <h1>{props.note.name}</h1>
+      <p>{props.note.content}</p>
     </div>
   )
 }
 
-export default withRouter(NoteShow)
+NoteShow.defaultProps = {
+  note: {
+    name: '',
+    content: ''
+  }
+}

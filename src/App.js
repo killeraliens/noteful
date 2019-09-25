@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import SideNav from './SideNav/SideNav';
 import NoteList from './NoteList/NoteList';
 import NoteShow from './NoteShow/NoteShow';
-//import FolderList from './FolderList/FolderList';
+import Header from './Header/Header';
 import './App.css';
 import Folders from './dummyStore.js'
 
@@ -28,6 +28,7 @@ class App extends Component {
     // console.log(notes)
     return (
       <div className="App">
+        <Header/>
         <SideNav folders={folders}/>
         <main>
           <Route exact path='/' render={(routeProps) => {
@@ -56,11 +57,9 @@ class App extends Component {
             return(
               <NoteShow
                 note={note}
-
               />
             )
           }}/>
-
         </main>
       </div>
     );
