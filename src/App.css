@@ -2,9 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
 
 .App-header {
   background-color: #282c34;
@@ -17,6 +14,3 @@
   color: white;
 }
 
-.App ul * {
-  list-style: none;
-}
