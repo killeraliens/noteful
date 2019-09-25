@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <SideNav folders={folders}/>
+        <SideNav folders={folders} notes={notes}/>
         <main>
           <Switch>
 

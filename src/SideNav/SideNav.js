@@ -25,6 +25,16 @@ export default function SideNav(props) {
             )
           }}
           />
+          <Route path='/note/:noteId' render={(routeProps) => {
+              const note = props.notes.find(note => note.id === routeProps.match.params.noteId)
+              return(
+                <FolderList
+                  folders={props.folders}
+                  note={note}
+                  { ...routeProps }
+                />
+              )
+            }}/>
       </Switch>
     </div>
   )

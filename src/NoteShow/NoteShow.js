@@ -2,7 +2,7 @@ import React from 'react'
 
 
 export default function NoteShow(props) {
-  //console.log(props)
+  console.log(props)
   return(
     <div>
       <h1>{props.note.name}</h1>
