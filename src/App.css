@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 80px 1fr 100px;
-  grid-template-areas: 'header header' 'sidenav main' 'footer footer';
+  grid-template-areas: 'header header' 'sidenav main';
   height: 100vh;
   /*grid-gap: 1rem;*/
 }
@@ -33,10 +33,14 @@
   padding-left: 0;
 }
 
+.App a {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 600px) {
   .App {
     grid-template-rows: 80px auto auto 100px;
-    grid-template-areas: 'header header' 'sidenav sidenav' 'main main' 'footer footer';
+    grid-template-areas: 'header header' 'sidenav sidenav' 'main main';
     min-height: 100vh;
   }
 
