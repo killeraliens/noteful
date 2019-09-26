@@ -1,17 +1,31 @@
 .App {
   text-align: center;
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas: 'header header' 'sidenav main';
+  min-height: 100vh
 }
 
 .App > nav {
-  width: 100%;
+  grid-area: sidenav;
 }
+
+.App > header {
+  grid-area: header;
+}
+
+.App > main {
+  grid-area: main
+}
+
+
 
 .App li {
   list-style: none;
 }
 
-@media screen and (min-width: 600px) {
+/*@media screen and (min-width: 600px) {
   .App {
     display: flex;
   }
@@ -19,7 +33,7 @@
     width: 80vw;
   }
 }
-
+*/
 
 .App-header {
   background-color: #282c34;

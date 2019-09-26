@@ -25,15 +25,15 @@ class App extends Component {
 
   render() {
     const { folders, notes } = this.state;
-    // console.log(folders)
-    // console.log(notes)
     return (
       <div className="App">
+        <header>
+          <Header/>
+        </header>
         <nav>
           <SideNav folders={folders} notes={notes}/>
         </nav>
         <main>
-          <Header/>
           <Switch>
             <Route exact path='/' render={(routeProps) => {
               return(
@@ -44,11 +44,8 @@ class App extends Component {
               )
             }}/>
             <Route path='/folder/:folderId' render={(routeProps) => {
-              //console.log('rout props for folder path', routeProps.match)
               const folder = folders.find(folder => folder.id === routeProps.match.params.folderId)
-              // console.log('matching folder', folder )
               const folderNotes = notes.filter(note => note.folderId === folder.id);
-              //console.log('folders notes', folderNotes )
               return(
                 <NoteList
                   notes={folderNotes}
