@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './NoteShow.css'
 
 
 export default function NoteShow(props) {

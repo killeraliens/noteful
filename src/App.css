@@ -2,9 +2,10 @@
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 100px 1fr;
-  grid-template-areas: 'header header' 'sidenav main';
-  min-height: 100vh
+  grid-template-rows: 80px 1fr 100px;
+  grid-template-areas: 'header header' 'sidenav main' 'footer footer';
+  height: 100vh;
+  /*grid-gap: 1rem;*/
 }
 
 .App > nav {
@@ -16,24 +17,34 @@
 }
 
 .App > main {
-  grid-area: main
+  grid-area: main;
+  overflow: scroll;
 }
 
-
+.App > footer {
+  grid-area: footer;
+}
 
 .App li {
   list-style: none;
 }
 
-/*@media screen and (min-width: 600px) {
+.App ul {
+  padding-left: 0;
+}
+
+@media screen and (max-width: 600px) {
   .App {
-    display: flex;
+    grid-template-rows: 80px auto auto 100px;
+    grid-template-areas: 'header header' 'sidenav sidenav' 'main main' 'footer footer';
+    min-height: 100vh;
   }
+
   .App > main {
-    width: 80vw;
+    overflow: visible;
   }
 }
-*/
+
 
 .App-header {
   background-color: #282c34;
