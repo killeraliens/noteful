@@ -1,11 +1,32 @@
-.FolderList__li {
-  font-size: 22px;
+.FolderList__li i {
 
+
+}
+
+.FolderList__li__nav-link {
+  padding: 16px 22px;
+  font-size: 22px;
+  display: block;
+}
+
+.FolderList__li__nav-link svg {
+  margin-right: 8px;
 }
 
 .FolderList__li__nav-link.active {
-  background-color: lightblue;
+  background-color: rgb(80, 80, 80);
+  color: yellow;
 }
+
+.FolderList__button-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.FolderList__button-wrap li {
+    margin-bottom: 8px;
+}
+
 
 
 @media screen and (max-width: 600px) {
@@ -14,4 +35,15 @@
     display: inline;
     margin-right: 16px;
   }
+
+  .FolderList__button-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .FolderList__button-wrap a {
+    margin-right: 8px;
+  }
+
 }

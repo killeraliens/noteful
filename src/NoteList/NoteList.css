@@ -1,0 +1,10 @@
+.NoteList {
+  text-align: left;
+  padding: 22px;
+  font-size: 28px;
+}
+
+
+.NoteList li {
+  margin-bottom: 8px;
+}

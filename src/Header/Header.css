@@ -1,3 +1,6 @@
-/*.Header {
-  grid-area: 'header';
-}*/
+.Header {
+  background-color: yellow;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}

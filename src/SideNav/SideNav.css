@@ -1,3 +1,4 @@
-/*.SideNav {
-  grid-area: sidenav;
-}*/
+.SideNav {
+  padding: 16px;
+  background-color: lightgrey;
+}

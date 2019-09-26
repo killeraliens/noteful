@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom'
 import NoteList from '../NoteList/NoteList'
 import Button from '../Button/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import './FolderList.css'
 
 function FolderList(props) {
@@ -11,9 +13,7 @@ function FolderList(props) {
     : null
 
    let backButton = noteSelectedFolder
-    // ? <Link onClick={() => props.history.goBack()}>Back</Link>
-    // : <Link to='/add-folder'>Add Folder</Link>
-     ? <Button tag={Link} onClick={() => props.history.goBack()} className='Button__back'>Back</Button>
+     ? <Button tag='button' onClick={() => props.history.goBack()} className='Button__back'>Back</Button>
      : null
 
   let folderLinks = props.folders.length > 0
@@ -21,6 +21,7 @@ function FolderList(props) {
     return(
       <li key={folder.id} className="FolderList__li">
         <NavLink to={`/folder/${folder.id}`} className={`FolderList__li__nav-link ${noteSelectedFolder && noteSelectedFolder.id === folder.id ? 'active' : ''}`} >
+          <FontAwesomeIcon icon={faFolder}/>
           {folder.name}
         </NavLink>
       </li>
@@ -31,13 +32,14 @@ function FolderList(props) {
 
   return(
     <div className="FolderList">
-      <h1>Folders</h1>
       <ul>
         {folderLinks}
        {/* { noteSelectedFolder ? noteSelectedFolder.name : null }*/}
       </ul>
-      <Button tag={Link} to="/add-folder" className='Button__add-folder'>Add Folder</Button>
-      { backButton }
+      <div className="FolderList__button-wrap">
+        <Button tag={Link} to="/add-folder" className='Button__add-folder'>Add Folder</Button>
+        { backButton }
+      </div>
     </div>
   )
 }

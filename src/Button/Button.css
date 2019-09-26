@@ -1,6 +1,14 @@
+a.Button {
+  color: white !important;
+}
+
 .Button {
   background-color: darkblue;
   color: white;
-  display: block;
+  display: inline-block;
+  line-height: 40px;
+  padding: 0px 16px;
+  font-size: 16px;
 }
+
 
