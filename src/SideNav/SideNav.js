@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
 import FolderList from '../FolderList/FolderList';
+import NoteSelected from '../NoteSelected/NoteSelected';
 import './SideNav.css';
 
 export default function SideNav(props) {
@@ -26,7 +27,7 @@ export default function SideNav(props) {
             )
           }}
           />
-          <Route path='/note/:noteId' render={(routeProps) => {
+        <Route path='/note/:noteId' render={(routeProps) => {
               const note = props.notes.find(note => note.id === routeProps.match.params.noteId)
               return(
                 <FolderList
@@ -35,7 +36,7 @@ export default function SideNav(props) {
                   { ...routeProps }
                 />
               )
-            }}/>
+          }}/>
       </Switch>
     </div>
   )

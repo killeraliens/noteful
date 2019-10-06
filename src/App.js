@@ -24,7 +24,8 @@ class App extends Component {
   }
 
   render() {
-    const { folders, notes } = this.state;
+    //is spread operator necessary here?
+    const { folders, notes } = this.state ;
     return (
       <div className="App">
         <header>
@@ -55,6 +56,7 @@ class App extends Component {
             }}/>
             <Route path='/note/:noteId' render={(routeProps) => {
               const note = notes.find(note => note.id === routeProps.match.params.noteId)
+              console.log('notedId path', routeProps.match)
               return(
                 <NoteShow
                   note={note}

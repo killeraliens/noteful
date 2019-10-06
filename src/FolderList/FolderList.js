@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom'
-import NoteList from '../NoteList/NoteList'
 import Button from '../Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
@@ -13,7 +12,7 @@ function FolderList(props) {
     : null
 
    let backButton = noteSelectedFolder
-     ? <Button tag='button' onClick={() => props.history.goBack()} className='Button__back'>Back</Button>
+     ? <Button tag='button' onClick={() => props.history.goBack()} className='Button__back FolderList__Btn'>Back</Button>
      : null
 
   let folderLinks = props.folders.length > 0
@@ -29,12 +28,10 @@ function FolderList(props) {
   })
   : <div>No Folders</div>
 
-
   return(
     <div className="FolderList">
       <ul>
         {folderLinks}
-       {/* { noteSelectedFolder ? noteSelectedFolder.name : null }*/}
       </ul>
       <div className="FolderList__button-wrap">
         <Button tag={Link} to="/add-folder" className='Button__add-folder'>Add Folder</Button>
