@@ -6,7 +6,8 @@ import NoteShow from './NoteShow/NoteShow';
 import Header from './Header/Header';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import './App.css';
-import Folders from './dummyStore.js'
+import Folders from './dummyStore.js';
+import NotesContext from './NotesContext';
 
 
 class App extends Component {
@@ -23,53 +24,45 @@ class App extends Component {
     })
   }
 
+  deleteNote = (id) => {
+    console.log('deleting note..', id)
+  }
+
   render() {
-    //is spread operator necessary here?
-    const { folders, notes } = this.state ;
+    const contextValue = {
+      notes: this.state.notes,
+      deleteNote: this.deleteNote
+    }
+    // const { folders, notes } = this.state ;
+    const { folders } = this.state ;
+    const {notes} = contextValue;
     return (
-      <div className="App">
-        <header>
-          <Header/>
-        </header>
-        <nav>
-          <SideNav folders={folders} notes={notes}/>
-        </nav>
-        <main>
-          <Switch>
-            <Route exact path='/' render={(routeProps) => {
-              return(
-                <NoteList
-                  notes={notes}
-                  { ...routeProps }
-                />
-              )
-            }}/>
-            <Route path='/folder/:folderId' render={(routeProps) => {
-              const folder = folders.find(folder => folder.id === routeProps.match.params.folderId)
-              const folderNotes = notes.filter(note => note.folderId === folder.id);
-              return(
-                <NoteList
-                  notes={folderNotes}
-                  { ...routeProps }
-                />
-              )
-            }}/>
-            <Route path='/note/:noteId' render={(routeProps) => {
-              const note = notes.find(note => note.id === routeProps.match.params.noteId)
-              console.log('notedId path', routeProps.match)
-              return(
-                <NoteShow
-                  note={note}
-                />
-              )
-            }}/>
-            <Route component={NotFoundPage}/>
-          </Switch>
-        </main>
-        {/*<footer>
-          The Footer
-        </footer>*/}
-      </div>
+      <NotesContext.Provider value={contextValue}>
+        <div className="App">
+          <header>
+            <Header/>
+          </header>
+          <nav>
+            <SideNav folders={folders} notes={notes}/>
+          </nav>
+          <main>
+            <Switch>
+              <Route exact path='/' component={NoteList}/>
+              <Route path='/folder/:folderId' component={NoteList}/>
+              <Route path='/note/:noteId' render={(routeProps) => {
+                const note = notes.find(note => note.id === routeProps.match.params.noteId)
+                console.log('notedId path', routeProps.match)
+                return(
+                  <NoteShow
+                    note={note}
+                  />
+                )
+              }}/>
+              <Route component={NotFoundPage}/>
+            </Switch>
+          </main>
+        </div>
+     </NotesContext.Provider>
     );
   }
 }

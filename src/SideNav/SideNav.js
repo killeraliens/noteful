@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
 import FolderList from '../FolderList/FolderList';
-import NoteSelected from '../NoteSelected/NoteSelected';
 import './SideNav.css';
 
 export default function SideNav(props) {
