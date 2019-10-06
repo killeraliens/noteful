@@ -31,11 +31,11 @@ class App extends Component {
   render() {
     const contextValue = {
       notes: this.state.notes,
+      folders: this.state.folders,
       deleteNote: this.deleteNote
-    }
-    // const { folders, notes } = this.state ;
-    const { folders } = this.state ;
-    const {notes} = contextValue;
+    };
+
+    const {notes, folders} = contextValue;
     return (
       <NotesContext.Provider value={contextValue}>
         <div className="App">
@@ -43,7 +43,7 @@ class App extends Component {
             <Header/>
           </header>
           <nav>
-            <SideNav folders={folders} notes={notes}/>
+            <SideNav />
           </nav>
           <main>
             <Switch>

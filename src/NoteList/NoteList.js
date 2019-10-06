@@ -14,7 +14,10 @@ export default function NoteList(props) {
           ? value.notes.filter(note => note.folderId === props.match.params.folderId)
           : value.notes
         const noteListItems = notes.map(note =>
-          <li key={note.id}><Link to={`/note/${note.id}`}>{note.name}</Link></li>
+          <li key={note.id}>
+            <Link to={`/note/${note.id}`}>{note.name}</Link>
+            <button onClick={() => value.deleteNote(note.id)}>Delete</button>
+          </li>
         )
 
         return(
@@ -27,6 +30,4 @@ export default function NoteList(props) {
   )
 }
 
-NoteList.defaultProps = {
-  notes: []
-}
+
