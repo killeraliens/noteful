@@ -1,10 +1,12 @@
 import React from 'react';
 import './NoteShow.css';
 import NotesContext from '../NotesContext'
+import Button from '../Button/Button'
+import { Link } from 'react-router-dom'
 
 
 export default function NoteShow(props) {
-  // console.log(props)
+
   return(
     <NotesContext.Consumer>
       {value => {
@@ -16,6 +18,12 @@ export default function NoteShow(props) {
             {note.error}
             <h1>{note.name}</h1>
             <p>{note.content}</p>
+            <Button tag='button' onClick={() => {
+              const deleteNote = new Promise((res, rej) => {
+                res(value.deleteNote(note.id))
+              })
+              deleteNote.then(() => props.history.push('/'))
+            }}>Delete</Button>
           </div>
         )
       }}

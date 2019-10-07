@@ -17,25 +17,72 @@ class App extends Component {
     notes: []
   }
 
-  componentDidMount() {
-    this.setState({
-      folders: Folders.folders,
-      notes: Folders.notes
-    })
+
+  fetchData = (url, item) => {
+    return fetch(url)
+      .then(res => {
+        if(!res.ok) {
+          throw new Error(res)
+        }
+        return res.json()
+      })
+      .then(data => {
+        this.setState({
+          [item]: data
+        })
+      })
+      .catch(err => {
+        console.log('error loading from local, state not set', err)
+        this.setState({ error: err})
+      })
   }
 
-  deleteNote = (id) => {
-    console.log('deleting note..', id)
+  componentDidMount() {
+    //how do i use promise.all?
+    console.log('setting states from db')
+    const setFolders = this.fetchData('http://localhost:9090/folders', 'folders')
+    const setNotes = this.fetchData('http://localhost:9090/notes', 'notes')
+
+    return Promise.all([setFolders, setNotes])
+
+  }
+
+  deleteNoteReq = (id) => {
+    // why would they tell us to put the "fetch delete req" in a child component,
+    // when its used by sibling components as well?
+    // I've combined the fetch and current state setting into one Context function.
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }
+
+    fetch(`http://localhost:9090/notes/${id}`, options)
+    .then(res => {
+      if(!res.ok) {
+        throw new Error(res)
+      }
+    })
+    .then(() => {
+      const newNotes = this.state.notes.filter(note => note.id !== id)
+      this.setState({
+        notes: newNotes
+      })
+    })
+    .catch(err => this.setState({error: err}))
   }
 
   render() {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.deleteNote
+      deleteNote: this.deleteNoteReq
     };
 
-    const {notes, folders} = contextValue;
+   if (this.state.error) {
+      return <NotFoundPage message={this.state.error.message}/>
+   }
     return (
       <NotesContext.Provider value={contextValue}>
         <div className="App">
@@ -54,7 +101,7 @@ class App extends Component {
             </Switch>
           </main>
         </div>
-     </NotesContext.Provider>
+      </NotesContext.Provider>
     );
   }
 }
