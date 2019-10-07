@@ -49,15 +49,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={NoteList}/>
               <Route path='/folder/:folderId' component={NoteList}/>
-              <Route path='/note/:noteId' render={(routeProps) => {
-                const note = notes.find(note => note.id === routeProps.match.params.noteId)
-                console.log('notedId path', routeProps.match)
-                return(
-                  <NoteShow
-                    note={note}
-                  />
-                )
-              }}/>
+              <Route path='/note/:noteId' component={NoteShow}/>
               <Route component={NotFoundPage}/>
             </Switch>
           </main>

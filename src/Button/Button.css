@@ -1,6 +1,4 @@
-a.Button {
-  color: white !important;
-}
+
 
 .Button {
   background-color: darkblue;
@@ -9,6 +7,12 @@ a.Button {
   line-height: 40px;
   padding: 8px 16px;
   font-size: 16px;
+}
+
+.Button__add-folder {
+  border: 1px dashed darkgrey;
+  color: darkgrey;
+  background-color: rgba(0,0,0,0);
 }
 
 
