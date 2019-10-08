@@ -40,10 +40,10 @@ class App extends Component {
   componentDidMount() {
     //how do i use promise.all?
     console.log('setting states from db')
-    const setFolders = this.fetchData('http://localhost:9090/folders', 'folders')
-    const setNotes = this.fetchData('http://localhost:9090/notes', 'notes')
+    this.fetchData('http://localhost:9090/folders', 'folders')
+    this.fetchData('http://localhost:9090/notes', 'notes')
 
-    return Promise.all([setFolders, setNotes])
+    //return Promise.all([setFolders, setNotes])
 
   }
 
@@ -80,9 +80,18 @@ class App extends Component {
       deleteNote: this.deleteNoteReq
     };
 
-   if (this.state.error) {
-      return <NotFoundPage message={this.state.error.message}/>
-   }
+    if (this.state.error) {
+      return (
+      <div className="App">
+          <header>
+            <Header/>
+          </header>
+          {console.log(this.state.error.message)}
+          <NotFoundPage message={this.state.error.message}/>
+      </div>
+      )
+    }
+
     return (
       <NotesContext.Provider value={contextValue}>
         <div className="App">
