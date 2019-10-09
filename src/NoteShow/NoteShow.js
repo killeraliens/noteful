@@ -1,7 +1,8 @@
 import React from 'react';
 import './NoteShow.css';
 import NotesContext from '../NotesContext'
-import Button from '../Button/Button'
+//import Button from '../Button/Button'
+import Note from '../Note/Note'
 import { Link } from 'react-router-dom'
 
 
@@ -10,20 +11,13 @@ export default function NoteShow(props) {
   return(
     <NotesContext.Consumer>
       {value => {
-        const note = props.match.params.noteId
-          ? value.notes.find(note => note.id === props.match.params.noteId) || {error: 'Oops, no note found'}
-          : {}
+
+        const note = value.notes.find(note => note.id === props.match.params.noteId) || {}
+
         return(
           <div className='NoteShow'>
-            {note.error}
-            <h1>{note.name}</h1>
+            <Note followupDeleteNote={() => props.history.push('/')} name={note.name} id={note.id}/>
             <p>{note.content}</p>
-            <Button tag='button' onClick={() => {
-              const deleteNote = new Promise((res, rej) => {
-                res(value.deleteNote(note.id))
-              })
-              deleteNote.then(() => props.history.push('/'))
-            }}>Delete</Button>
           </div>
         )
       }}
@@ -31,3 +25,9 @@ export default function NoteShow(props) {
   )
 }
 
+//do i need this if the note is defaulting to empty object?
+// NoteShow.defaultProps = {
+//   match: {
+//     params: {}
+//   }
+// }

@@ -47,37 +47,45 @@ class App extends Component {
 
   }
 
-  deleteNoteReq = (id) => {
-    // why would they tell us to put the "fetch delete req" in a child component,
-    // when its used by sibling components as well?
-    // I've combined the fetch and current state setting into one Context function.
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json'
-      }
-    }
+  // deleteNoteReq = (id) => {
+  //   // why would they tell us to put the "fetch delete req" in a child component,
+  //   // when its used by sibling components as well?
+  //   // I've combined the fetch and current state setting into one Context function.
+  //   const options = {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     }
+  //   }
 
-    fetch(`http://localhost:9090/notes/${id}`, options)
-    .then(res => {
-      if(!res.ok) {
-        throw new Error(res)
-      }
-    })
-    .then(() => {
+  //   fetch(`http://localhost:9090/notes/${id}`, options)
+  //   .then(res => {
+  //     if(!res.ok) {
+  //       throw new Error(res)
+  //     }
+  //   })
+  //   .then(() => {
+  //     const newNotes = this.state.notes.filter(note => note.id !== id)
+  //     this.setState({
+  //       notes: newNotes
+  //     })
+  //   })
+  //   .catch(err => this.setState({error: err}))
+  // }
+
+  deleteNote = (id) => {
       const newNotes = this.state.notes.filter(note => note.id !== id)
       this.setState({
         notes: newNotes
       })
-    })
-    .catch(err => this.setState({error: err}))
   }
+
 
   render() {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.deleteNoteReq
+      deleteNote: this.deleteNote
     };
 
     if (this.state.error) {
