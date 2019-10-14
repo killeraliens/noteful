@@ -11,6 +11,8 @@ class Note extends Component {
 
   static contextType = NotesContext;
 
+  state = {}
+
   handleDeleteNoteReq = (e) => {
     e.preventDefault();
     const noteId = this.props.id
@@ -33,7 +35,7 @@ class Note extends Component {
     })
     .catch(err => {
       this.setState({error: err})
-    )}
+    })
   }
 
 
