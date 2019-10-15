@@ -6,6 +6,7 @@ import NoteShow from './NoteShow/NoteShow';
 import Header from './Header/Header';
 import AddFolder from './AddFolder/AddFolder';
 import AddFolderError from './AddFolder/AddFolderError'
+import AddNoteForm from './AddNoteForm/AddNoteForm'
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import './App.css';
 //import Folders from './dummyStore.js';
@@ -97,9 +98,10 @@ class App extends Component {
               <Route exact path='/' component={NoteList}/>
               <Route path='/folder/:folderId' component={NoteList}/>
               <Route path='/note/:noteId' component={NoteShow}/>
-              <AddFolderError>
+              {/*<AddFolderError>*/}
                 <Route path='/add-folder' component={AddFolder}/>
-              </AddFolderError>
+              {/*</AddFolderError>*/}
+              <Route exact path="/add-note" component={AddNoteForm}/>
               <Route component={NotFoundPage}/>
             </Switch>
           </main>

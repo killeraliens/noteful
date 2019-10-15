@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './NoteList.css'
 import NotesContext from '../NotesContext';
-//import Button from '../Button/Button';
+import Button from '../Button/Button';
 import Note from '../Note/Note'
 
 export default function NoteList(props) {

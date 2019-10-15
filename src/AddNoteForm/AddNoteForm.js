@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
+import NotesContext from '../NotesContext'
 import './AddNoteForm.css';
 
 class AddNoteForm extends Component {
+  static contextType = NotesContext;
+
   state = {
       "name": "",
       "folderId": "",
@@ -32,7 +35,7 @@ class AddNoteForm extends Component {
         <form>
           <select name="folder" id="folder" onChange={this.updateFolderId}>
             <option value="None">No Folder Selected</option>
-            { this.props.folders.map(folder => {
+            { this.context.folders.map(folder => {
               return <option value={folder.id}>{folder.name}</option>
             })}
           </select>
@@ -44,3 +47,5 @@ class AddNoteForm extends Component {
     )
   }
 }
+
+export default AddNoteForm;
