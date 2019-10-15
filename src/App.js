@@ -35,20 +35,14 @@ class App extends Component {
         })
       })
       .catch(err => {
-        console.log('error loading from local, state not set', err)
+        //console.log('error loading from local, state not set', err)
         this.setState({ error: err})
       })
   }
 
   componentDidMount() {
-
-    console.log('setting states from db')
-    try {
-      this.fetchData('http://localhost:9090/folders', 'folders')
-      this.fetchData('http://localhost:9090/notes', 'notes')
-    } catch(err) {
-      throw new Error(err)
-    }
+    this.fetchData('http://localhost:9090/folders', 'folders')
+    this.fetchData('http://localhost:9090/notes', 'notes')
 
   }
 
@@ -81,17 +75,18 @@ class App extends Component {
       addNote: this.addNote
     };
 
-    // if (this.state.error) {
-    //   return (
-    //   <div className="App">
-    //       <header>
-    //         <Header/>
-    //       </header>
-    //       {console.log(this.state.error.message)}
-    //       <NotFoundPage message={this.state.error.message}/>
-    //   </div>
-    //   )
-    // }
+    if (this.state.error) {
+      // return (
+      // <div className="App">
+      //     <header>
+      //       <Header/>
+      //     </header>
+      //     {console.log(this.state.error.message)}
+      //     <NotFoundPage message={this.state.error.message}/>
+      // </div>
+      // )
+      throw new Error(this.state.error)
+    }
 
     return (
       <NotesContext.Provider value={contextValue}>
