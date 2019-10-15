@@ -23,6 +23,24 @@
 .App > main {
   grid-area: main;
   overflow: scroll;
+  padding: 40px;
+}
+
+.App form {
+  text-align: left;
+  background-color: rgb(80, 80, 80);
+  padding: 16px;
+  color: white;
+}
+
+.App form input  {
+  line-height: 40px;
+  padding: 0 16px;
+}
+
+.App form label  {
+  display: block;
+  margin-bottom: 8px;
 }
 
 /*.App > footer {

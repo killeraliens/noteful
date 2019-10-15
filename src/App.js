@@ -4,10 +4,12 @@ import SideNav from './SideNav/SideNav';
 import NoteList from './NoteList/NoteList';
 import NoteShow from './NoteShow/NoteShow';
 import Header from './Header/Header';
+import AddFolder from './AddFolder/AddFolder';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import './App.css';
 import Folders from './dummyStore.js';
 import NotesContext from './NotesContext';
+import AddFolderError from './AddFolderError'
 
 
 class App extends Component {
@@ -80,12 +82,18 @@ class App extends Component {
       })
   }
 
+  addFolder = (newFolder) => {
+    this.setState({
+      folders: [newFolder, ...this.state.folders]
+    })
+  }
 
   render() {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.deleteNote
+      deleteNote: this.deleteNote,
+      addFolder: this.addFolder
     };
 
     if (this.state.error) {
@@ -114,6 +122,9 @@ class App extends Component {
               <Route exact path='/' component={NoteList}/>
               <Route path='/folder/:folderId' component={NoteList}/>
               <Route path='/note/:noteId' component={NoteShow}/>
+              <AddFolderError>
+                <Route path='/add-folder' component={AddFolder}/>
+              </AddFolderError>
               <Route component={NotFoundPage}/>
             </Switch>
           </main>

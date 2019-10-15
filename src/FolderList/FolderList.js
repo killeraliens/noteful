@@ -43,7 +43,14 @@ function FolderList(props) {
               {folderLinks}
             </ul>
             <div className="FolderList__button-wrap">
-              <Button tag={Link} to="/add-folder" className='Button__add-folder FolderList__Btn'>Add Folder</Button>
+              <Button
+                tag={Link}
+                to="/add-folder"
+                className='Button__add-folder FolderList__Btn'
+                disabled={props.match.path === '/add-folder'}
+              >
+                Add Folder
+              </Button>
               { backButton }
             </div>
           </div>

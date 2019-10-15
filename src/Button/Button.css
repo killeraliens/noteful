@@ -15,4 +15,18 @@
   background-color: rgba(0,0,0,0);
 }
 
+.Button__add-folder.light {
+  border: 1px dashed lightgrey;
+  color: white;
+  background-color: rgba(0,0,0,0);
+}
+
+.Button__Cancel {
+  background-color: violet;
+}
+
+.Button:disabled,
+.Button[disabled] {
+  opacity: .5;
+}
 

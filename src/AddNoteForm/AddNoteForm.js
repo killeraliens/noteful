@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import './AddNoteForm.css';
 
 class AddNoteForm extends Component {
-  this.state = {
+  state = {
       "name": "",
       "folderId": "",
       "content": ""
