@@ -43,7 +43,6 @@ class App extends Component {
   componentDidMount() {
     this.fetchData('http://localhost:9090/folders', 'folders')
     this.fetchData('http://localhost:9090/notes', 'notes')
-
   }
 
 
@@ -76,16 +75,15 @@ class App extends Component {
     };
 
     if (this.state.error) {
-      // return (
-      // <div className="App">
-      //     <header>
-      //       <Header/>
-      //     </header>
-      //     {console.log(this.state.error.message)}
-      //     <NotFoundPage message={this.state.error.message}/>
-      // </div>
-      // )
-      throw new Error(this.state.error)
+
+      return (
+      <div className="App">
+          <header>
+            <Header/>
+          </header>
+          <NotFoundPage>Not Found! Check your connection. </NotFoundPage>
+      </div>
+      )
     }
 
     return (
@@ -100,16 +98,16 @@ class App extends Component {
               </ErrorBoundary>
             </nav>
             <main>
-              <ErrorBoundary>
-              <Switch>
-                  <Route exact path='/' component={NoteList}/>
-                  <Route path='/folder/:folderId' component={NoteList}/>
-                  <Route path='/note/:noteId' component={NoteShow}/>
-                  <Route path='/add-folder' component={AddFolder}/>
-                  <Route exact path="/add-note" component={AddNoteForm}/>
-                  <Route component={NotFoundPage}/>
-              </Switch>
-                </ErrorBoundary>
+                <Switch>
+                  <ErrorBoundary>
+                      <Route exact path='/' component={NoteList}/>
+                      <Route path='/folder/:folderId' component={NoteList}/>
+                      <Route path='/note/:noteId' component={NoteShow}/>
+                      <Route path='/add-folder' component={AddFolder}/>
+                      <Route exact path="/add-note" component={AddNoteForm}/>
+                      <Route component={NotFoundPage}/>
+                  </ErrorBoundary>
+                </Switch>
             </main>
         </div>
       </NotesContext.Provider>
