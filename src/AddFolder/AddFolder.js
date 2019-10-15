@@ -36,7 +36,7 @@ class AddFolder extends Component {
       }
 
     }
-    fetch(`http://localhost:9090/folders`)
+    fetch(`http://localhost:9090/folders`, options)
     .then(res => {
       if (!res.ok) {
         throw new Error(res)
@@ -45,7 +45,7 @@ class AddFolder extends Component {
     })
     .then(() => {
       this.context.addFolder(newFolder)
-      this.props.history.push('/')
+      this.props.history.push(`folder/${newFolder.id}`)
     })
     .catch(err => {
       console.log(err)

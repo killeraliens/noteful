@@ -5,9 +5,9 @@ import NoteList from './NoteList/NoteList';
 import NoteShow from './NoteShow/NoteShow';
 import Header from './Header/Header';
 import AddFolder from './AddFolder/AddFolder';
-import AddFolderError from './AddFolder/AddFolderError'
 import AddNoteForm from './AddNoteForm/AddNoteForm'
 import NotFoundPage from './NotFoundPage/NotFoundPage';
+import ErrorBoundary from './ErrorBoundary'
 import './App.css';
 //import Folders from './dummyStore.js';
 import NotesContext from './NotesContext';
@@ -64,25 +64,32 @@ class App extends Component {
     })
   }
 
+  addNote = (newNote) => {
+    this.setState({
+      notes: [newNote, ...this.state.notes]
+    })
+  }
+
   render() {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.deleteNote,
-      addFolder: this.addFolder
+      addFolder: this.addFolder,
+      addNote: this.addNote
     };
 
-    // if (this.state.error) {
-    //   return (
-    //   <div className="App">
-    //       <header>
-    //         <Header/>
-    //       </header>
-    //       {console.log(this.state.error.message)}
-    //       <NotFoundPage message={this.state.error.message}/>
-    //   </div>
-    //   )
-    // }
+    if (this.state.error) {
+      return (
+      <div className="App">
+          <header>
+            <Header/>
+          </header>
+          {console.log(this.state.error.message)}
+          <NotFoundPage message={this.state.error.message}/>
+      </div>
+      )
+    }
 
     return (
       <NotesContext.Provider value={contextValue}>
@@ -90,21 +97,23 @@ class App extends Component {
           <header>
             <Header/>
           </header>
-          <nav>
-            <SideNav />
-          </nav>
-          <main>
-            <Switch>
-              <Route exact path='/' component={NoteList}/>
-              <Route path='/folder/:folderId' component={NoteList}/>
-              <Route path='/note/:noteId' component={NoteShow}/>
-              {/*<AddFolderError>*/}
-                <Route path='/add-folder' component={AddFolder}/>
-              {/*</AddFolderError>*/}
-              <Route exact path="/add-note" component={AddNoteForm}/>
-              <Route component={NotFoundPage}/>
-            </Switch>
-          </main>
+            <nav>
+              <ErrorBoundary>
+                <SideNav />
+              </ErrorBoundary>
+            </nav>
+            <main>
+              <ErrorBoundary>
+              <Switch>
+                  <Route exact path='/' component={NoteList}/>
+                  <Route path='/folder/:folderId' component={NoteList}/>
+                  <Route path='/note/:noteId' component={NoteShow}/>
+                  <Route path='/add-folder' component={AddFolder}/>
+                  <Route exact path="/add-note" component={AddNoteForm}/>
+                  <Route component={NotFoundPage}/>
+              </Switch>
+                </ErrorBoundary>
+            </main>
         </div>
       </NotesContext.Provider>
     );

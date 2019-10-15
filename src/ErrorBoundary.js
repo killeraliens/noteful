@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class AddFolderError extends Component {
+class ErrorBoundary extends Component {
 
   constructor(props) {
     super(props);
@@ -14,8 +14,9 @@ class AddFolderError extends Component {
   }
 
   render() {
+    console.log('Error Boundary props!!!', this.props)
     const error = this.state.hasError
-    ? `Trouble adding folder`
+    ? `Something Went Wrong`
     : this.props.children;
     return(
       <div className='error'>{error}</div>
@@ -23,4 +24,4 @@ class AddFolderError extends Component {
   }
 }
 
-export default AddFolderError;
+export default ErrorBoundary;

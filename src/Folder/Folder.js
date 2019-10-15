@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { NavLink, Link } from 'react-router-dom'
-import Button from '../Button/Button'
+import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';

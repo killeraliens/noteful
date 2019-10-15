@@ -5,7 +5,8 @@ const NotesContext =  React.createContext({
   notes: [],
   folders: [],
   deleteNote: () => {},
-  addFolder: () => {}
+  addFolder: () => {},
+  addNote: () => {}
 })
 
 //Is this where I use propTypes validators for a Context?

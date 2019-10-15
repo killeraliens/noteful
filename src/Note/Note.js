@@ -40,7 +40,7 @@ class Note extends Component {
 
 
   render() {
-    const { name, id, modified } = this.props;
+    const { name, id, modified, children } = this.props;
     const { error } = this.state;
     return(
       <div className="Note">
@@ -50,6 +50,7 @@ class Note extends Component {
          </Link>
         </h2>
         <span>{ modified ? `modified ${modified}` : null}</span>
+        {children}
         <Button
               tag='button'
               onClick={this.handleDeleteNoteReq}
