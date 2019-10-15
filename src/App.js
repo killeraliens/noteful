@@ -41,12 +41,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //how do i use promise.all? Should I?
-    console.log('setting states from db')
-    this.fetchData('http://localhost:9090/folders', 'folders')
-    this.fetchData('http://localhost:9090/notes', 'notes')
 
-    //return Promise.all([setFolders, setNotes])
+    console.log('setting states from db')
+    try {
+      this.fetchData('http://localhost:9090/folders', 'folders')
+      this.fetchData('http://localhost:9090/notes', 'notes')
+    } catch(err) {
+      throw new Error(err)
+    }
 
   }
 
@@ -79,17 +81,17 @@ class App extends Component {
       addNote: this.addNote
     };
 
-    if (this.state.error) {
-      return (
-      <div className="App">
-          <header>
-            <Header/>
-          </header>
-          {console.log(this.state.error.message)}
-          <NotFoundPage message={this.state.error.message}/>
-      </div>
-      )
-    }
+    // if (this.state.error) {
+    //   return (
+    //   <div className="App">
+    //       <header>
+    //         <Header/>
+    //       </header>
+    //       {console.log(this.state.error.message)}
+    //       <NotFoundPage message={this.state.error.message}/>
+    //   </div>
+    //   )
+    // }
 
     return (
       <NotesContext.Provider value={contextValue}>

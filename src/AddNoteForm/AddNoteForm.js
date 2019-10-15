@@ -6,6 +6,10 @@ import Button from '../Button/Button';
 class AddNoteForm extends Component {
   static contextType = NotesContext;
 
+  static defaultProps = {
+    history: {match: {}}
+  }
+
   state = {
       "name": "",
       "folderId": "",

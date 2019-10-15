@@ -10,10 +10,10 @@ export default function SideNav(props) {
     <div className='SideNav'>
       <Switch>
           <Route exact path="/" component={FolderList}/>
-          <Route exact path="/folder/:folderId" component={FolderList}/>
-          <Route exact path="/note/:noteId" component={FolderList}/>
-          <Route exact path="/add-folder" component={FolderList}/>
-          <Route exact path="/add-note" component={FolderList}/>
+          <Route path="/folder/:folderId" component={FolderList}/>
+          <Route path="/note/:noteId" component={FolderList}/>
+          <Route path="/add-folder" component={FolderList}/>
+          <Route path="/add-note" component={FolderList}/>
       </Switch>
       <Button tag={Link} to="/add-note">Create New Note</Button>
     </div>

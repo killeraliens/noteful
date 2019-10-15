@@ -8,6 +8,10 @@ import './AddFolder.css';
 class AddFolder extends Component {
   static contextType = NotesContext;
 
+  static defaultProps = {
+    history: {match: {}}
+  }
+
   state = {
     folderName: {value: '', touched: false}
   }
@@ -48,8 +52,8 @@ class AddFolder extends Component {
       this.props.history.push(`folder/${newFolder.id}`)
     })
     .catch(err => {
-      console.log(err)
       this.setState({error: err})
+      new Error('Problem adding folder')
     })
 
   }
@@ -79,8 +83,21 @@ class AddFolder extends Component {
         />
         <ValidationError message={this.validateFolderName()} visible={nameError}/>
         <div className="AddFolder__btn-wrap">
-          <Button tag='button' type='submit' className="Button__add-folder light">Create</Button>
-          <Button tag='button' type='button' className="Button__Cancel">Cancel</Button>
+          <Button
+            tag='button'
+            type='submit'
+            className="Button__add-folder light"
+          >
+            Create
+          </Button>
+          <Button
+            tag='button'
+            type='button'
+            className="Button__Cancel"
+            onClick={() => {this.props.history.goBack()}}
+          >
+            Cancel
+          </Button>
         </div>
       </form>
     )
