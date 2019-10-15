@@ -49,8 +49,7 @@ class AddFolder extends Component {
     })
     .catch(err => {
       console.log(err)
-      // this.setState(error: true)
-      return err
+      this.setState({error: err})
     })
 
   }
@@ -68,6 +67,7 @@ class AddFolder extends Component {
     const nameError = this.state.folderName.touched && this.validateFolderName();
     return(
       <form className='AddFolder' onSubmit={this.handleSubmit}>
+        { this.state.error ? this.state.error.message : null}
         <h2>Add New Folder</h2>
         <label htmlFor="folder-name">Folder Name</label>
         <input

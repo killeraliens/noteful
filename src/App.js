@@ -5,11 +5,11 @@ import NoteList from './NoteList/NoteList';
 import NoteShow from './NoteShow/NoteShow';
 import Header from './Header/Header';
 import AddFolder from './AddFolder/AddFolder';
+import AddFolderError from './AddFolder/AddFolderError'
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import './App.css';
-import Folders from './dummyStore.js';
+//import Folders from './dummyStore.js';
 import NotesContext from './NotesContext';
-import AddFolderError from './AddFolderError'
 
 
 class App extends Component {
@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //how do i use promise.all?
+    //how do i use promise.all? Should I?
     console.log('setting states from db')
     this.fetchData('http://localhost:9090/folders', 'folders')
     this.fetchData('http://localhost:9090/notes', 'notes')
@@ -49,31 +49,6 @@ class App extends Component {
 
   }
 
-  // deleteNoteReq = (id) => {
-  //   // why would they tell us to put the "fetch delete req" in a child component,
-  //   // when its used by sibling components as well?
-  //   // I've combined the fetch and current state setting into one Context function.
-  //   const options = {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     }
-  //   }
-
-  //   fetch(`http://localhost:9090/notes/${id}`, options)
-  //   .then(res => {
-  //     if(!res.ok) {
-  //       throw new Error(res)
-  //     }
-  //   })
-  //   .then(() => {
-  //     const newNotes = this.state.notes.filter(note => note.id !== id)
-  //     this.setState({
-  //       notes: newNotes
-  //     })
-  //   })
-  //   .catch(err => this.setState({error: err}))
-  // }
 
   deleteNote = (id) => {
       const newNotes = this.state.notes.filter(note => note.id !== id)
@@ -96,17 +71,17 @@ class App extends Component {
       addFolder: this.addFolder
     };
 
-    if (this.state.error) {
-      return (
-      <div className="App">
-          <header>
-            <Header/>
-          </header>
-          {console.log(this.state.error.message)}
-          <NotFoundPage message={this.state.error.message}/>
-      </div>
-      )
-    }
+    // if (this.state.error) {
+    //   return (
+    //   <div className="App">
+    //       <header>
+    //         <Header/>
+    //       </header>
+    //       {console.log(this.state.error.message)}
+    //       <NotFoundPage message={this.state.error.message}/>
+    //   </div>
+    //   )
+    // }
 
     return (
       <NotesContext.Provider value={contextValue}>

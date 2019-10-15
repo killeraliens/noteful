@@ -24,4 +24,3 @@ class AddFolderError extends Component {
 }
 
 export default AddFolderError;
-

@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom'
 import Button from '../Button/Button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFolder } from '@fortawesome/free-solid-svg-icons'
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faFolder } from '@fortawesome/free-solid-svg-icons'
+import Folder from '../Folder/Folder';
 import './FolderList.css'
 import NotesContext from '../NotesContext';
 
@@ -20,19 +21,19 @@ function FolderList(props) {
           ? value.folders.find(folder => folder.id === noteSelected.folderId)
           : null
 
-        let backButton = noteSelected
-          ? <Button tag='button' onClick={() => props.history.goBack()} className='Button__back FolderList__Btn'>Back</Button>
-          : null
+        // let backButton = noteSelected
+        //   ? <Button tag='button' onClick={() => props.history.goBack()} className='Button__back FolderList__Btn'>Back</Button>
+        //   : null
 
         let folderLinks = value.folders.length > 0
           ? value.folders.map(folder => {
             return(
-              <li key={folder.id} className="FolderList__li">
-                <NavLink to={`/folder/${folder.id}`} className={`FolderList__li__nav-link ${noteSelectedFolder && noteSelectedFolder.id === folder.id ? 'active' : ''}`} >
-                  <FontAwesomeIcon icon={faFolder}/>
-                  {folder.name}
-                </NavLink>
-              </li>
+              <Folder
+                key={folder.id}
+                id={folder.id}
+                name={folder.name}
+                className={`FolderList__li__nav-link ${noteSelectedFolder && noteSelectedFolder.id === folder.id ? 'active' : ''}`}
+              />
             )
           })
           : <div>No Folders</div>
@@ -51,13 +52,16 @@ function FolderList(props) {
               >
                 Add Folder
               </Button>
-              { backButton }
             </div>
           </div>
         )
       }}
     </NotesContext.Consumer>
   )
+}
+
+FolderList.defaultProps = {
+  match: { params: {} }
 }
 
 export default FolderList

@@ -11,7 +11,7 @@ class Note extends Component {
 
   static contextType = NotesContext;
 
-  state = {}
+  state = {};
 
   handleDeleteNoteReq = (e) => {
     e.preventDefault();
