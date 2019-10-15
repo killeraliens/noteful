@@ -4,7 +4,7 @@ import NotesContext from '../NotesContext'
 import Button from '../Button/Button'
 import Note from '../Note/Note'
 import { Link } from 'react-router-dom'
-import NotFoundPage from '../NotFoundPage/NotFoundPage'
+//import NotFoundPage from '../NotFoundPage/NotFoundPage'
 
 
 export default function NoteShow(props) {
@@ -15,9 +15,9 @@ export default function NoteShow(props) {
 
         const note = value.notes.find(note => note.id === props.match.params.noteId) || {};
 
-        if (!note.id) {
-         return <NotFoundPage message='Could not find this note!'/>
-        }
+        // if (!note.id) {
+        //  return <NotFoundPage>Could not find this note!</NotFoundPage>
+        // }
 
         return(
           <div className='NoteShow'>

@@ -61,7 +61,7 @@ class AddNoteForm extends Component {
     })
     .catch(err => {
       this.setState({error: 'Could not post your new note!'})
-      new Error('err')
+      throw new Error(err)
     })
   }
 
