@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import SideNav from './SideNav/SideNav';
 import NoteList from './NoteList/NoteList';
 import NoteShow from './NoteShow/NoteShow';
@@ -8,6 +8,7 @@ import AddFolder from './AddFolder/AddFolder';
 import AddNoteForm from './AddNoteForm/AddNoteForm'
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import ErrorBoundary from './ErrorBoundary'
+import Button from './Button/Button'
 import './App.css';
 //import Folders from './dummyStore.js';
 import NotesContext from './NotesContext';
@@ -81,7 +82,7 @@ class App extends Component {
           <header>
             <Header/>
           </header>
-          <NotFoundPage>Not Found! Check your connection. </NotFoundPage>
+          <NotFoundPage>Problem loading app! Check your connection.</NotFoundPage>
       </div>
       )
     }
@@ -98,16 +99,16 @@ class App extends Component {
               </ErrorBoundary>
             </nav>
             <main>
+              <ErrorBoundary>
                 <Switch>
-                  <ErrorBoundary>
                       <Route exact path='/' component={NoteList}/>
                       <Route path='/folder/:folderId' component={NoteList}/>
                       <Route path='/note/:noteId' component={NoteShow}/>
                       <Route path='/add-folder' component={AddFolder}/>
                       <Route exact path="/add-note" component={AddNoteForm}/>
                       <Route component={NotFoundPage}/>
-                  </ErrorBoundary>
                 </Switch>
+              </ErrorBoundary>
             </main>
         </div>
       </NotesContext.Provider>

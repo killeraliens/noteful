@@ -1,6 +1,23 @@
 .Header {
   background-color: yellow;
   height: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 5fr 1fr;
+  grid-template-areas: 'title addNoteFab';
+}
+
+.Header > h1 {
+  grid-area: title;
+}
+
+.addNoteFab {
+  grid-area: addNoteFab;
+  height: 40px;
   display: flex;
   justify-content: center;
+  align-self: center;
+  color: white !important;
+  font-weight: bold;
+  margin: 0 16px;
 }

@@ -15,8 +15,8 @@ export default function NoteList(props) {
           ? value.notes.filter(note => note.folderId === props.match.params.folderId)
           : value.notes
         const noteListItems = notes.length > 0
-          // intentional error thrown here (missing name and id props)
-          ? notes.map(note => <Note key={note.id}  modified={note.modified}/>)
+          // intentional error thrown here (missing name and id)
+          ? notes.map(note => <Note key={note.id}  id={note.id} name={note.name} modified={note.modified}/>)
           : <p> No Notes Yet!</p>
         return(
           <div className="NoteList">

@@ -14,10 +14,14 @@ class ErrorBoundary extends Component {
   }
 
   render() {
-    console.log('Error Boundary props!!!', this.props)
+
     const error = this.state.hasError
     ? `Something Went Wrong`
     : this.props.children;
+
+    const classNames = this.state.hasError
+      ? `error active`
+      : `error`
     return(
       <div className='error'>{error}</div>
     )

@@ -9,6 +9,7 @@ export default function Header(props) {
       <Link to='/'>
         <h1>Noteful App</h1>
       </Link>
+      <Button tag={Link} to="/add-note" className="addNoteFab">Create New Note</Button>
     </div>
   )
 }

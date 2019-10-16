@@ -15,7 +15,6 @@ export default function SideNav(props) {
           <Route path="/add-folder" component={FolderList}/>
           <Route path="/add-note" component={FolderList}/>
       </Switch>
-      <Button tag={Link} to="/add-note">Create New Note</Button>
     </div>
   )
 }

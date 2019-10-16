@@ -50,6 +50,7 @@ class Note extends Component {
   render() {
     const { name, id, modified, children } = this.props;
     const { error } = this.state;
+
     return(
       <div className="Note">
         <h2>
