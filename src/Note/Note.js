@@ -51,24 +51,26 @@ class Note extends Component {
     const { name, id, modified, children } = this.props;
     const { error } = this.state;
 
-    return(
-      <div className="Note">
-        <h2>
-         <Link to={`/note/${id}`}>
-          { name }
-         </Link>
-        </h2>
-        <span>{ modified ? `modified ${modified}` : null}</span>
-        {children}
-        <Button
-              tag='button'
-              onClick={this.handleDeleteNoteReq}
-              className='NoteList__button'
-        >
-          Delete
-        </Button>
-      </div>
-    )
+    return new Error ('blammo')
+
+    // return(
+    //   <div className="Note">
+    //     <h2>
+    //      <Link to={`/note/${id}`}>
+    //       { name }
+    //      </Link>
+    //     </h2>
+    //     <span>{ modified ? `modified ${modified}` : null}</span>
+    //     {children}
+    //     <Button
+    //           tag='button'
+    //           onClick={this.handleDeleteNoteReq}
+    //           className='NoteList__button'
+    //     >
+    //       Delete
+    //     </Button>
+    //   </div>
+    // )
   }
 }
 

@@ -10,6 +10,7 @@
 
 .App {
   box-sizing: border-box;
+
 }
 
 .App > nav {
@@ -68,10 +69,11 @@
   border: none;
 }
 
-.error.active {
+.ErrorBoundary {
   background-color: rgba(0,0,0,.8);
+  background-color: red;
   color: hotpink;
-
+  padding: 16px;
 }
 
 
@@ -89,14 +91,4 @@
 }
 
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 

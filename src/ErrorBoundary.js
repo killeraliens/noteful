@@ -10,21 +10,23 @@ class ErrorBoundary extends Component {
   }
 
   static getDerivedStateFromError(error) {
+    console.log('error!!!', error)
     return { hasError: true}
   }
 
   render() {
 
-    const error = this.state.hasError
-    ? `Something Went Wrong`
-    : this.props.children;
+    if(this.state.hasError) {
+      return(
+        <div className='ErrorBoundary'>
+          <summary>Something went wrong</summary>
 
-    const classNames = this.state.hasError
-      ? `error active`
-      : `error`
-    return(
-      <div className='error'>{error}</div>
-    )
+        </div>
+      )
+    }
+
+    return this.props.children
+    //const errorDetails = this.state.hasError
   }
 }
 

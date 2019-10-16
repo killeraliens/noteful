@@ -6,6 +6,7 @@ import NotesContext from '../NotesContext';
 import Note from '../Note/Note'
 
 export default function NoteList(props) {
+  //return new Error('notelist error')
 
   return(
     <NotesContext.Consumer>

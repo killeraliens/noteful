@@ -94,21 +94,53 @@ class App extends Component {
             <Header/>
           </header>
             <nav>
-              <ErrorBoundary>
                 <SideNav />
-              </ErrorBoundary>
             </nav>
             <main>
-              <ErrorBoundary>
                 <Switch>
-                      <Route exact path='/' component={NoteList}/>
-                      <Route path='/folder/:folderId' component={NoteList}/>
-                      <Route path='/note/:noteId' component={NoteShow}/>
-                      <Route path='/add-folder' component={AddFolder}/>
-                      <Route exact path="/add-note" component={AddNoteForm}/>
-                      <Route component={NotFoundPage}/>
+                      <Route exact path='/' render={(props) => {
+                        return(
+                          <ErrorBoundary>
+                            <NoteList  {...props}/>
+                         </ErrorBoundary>
+                        )
+                      }}/>
+                      <Route path='/folder/:folderId' render={(props) => {
+                        return(
+                          <ErrorBoundary>
+                            <NoteList  {...props}/>
+                         </ErrorBoundary>
+                        )
+                      }}/>
+                      <Route path='/note/:noteId' render={(props) => {
+                        return(
+                          <ErrorBoundary>
+                            <NoteShow  {...props}/>
+                         </ErrorBoundary>
+                        )
+                      }}/>
+                      <Route path='/add-folder' render={(props) => {
+                        return(
+                          <ErrorBoundary>
+                            <AddFolder  {...props}/>
+                         </ErrorBoundary>
+                        )
+                      }}/>
+                      <Route path="/add-note" render={(props) => {
+                        return(
+                          <ErrorBoundary>
+                            <AddNoteForm  {...props}/>
+                          </ErrorBoundary>
+                        )
+                      }}/>
+                      <Route render={(props) => {
+                        return(
+                          <ErrorBoundary>
+                            <NotFoundPage  {...props}/>
+                          </ErrorBoundary>
+                        )
+                      }}/>
                 </Switch>
-              </ErrorBoundary>
             </main>
         </div>
       </NotesContext.Provider>
