@@ -10,11 +10,10 @@ class Note extends Component {
     followupDeleteNote: () => {},
   }
 
-
-  //this does not seem to be triggering my Error Boundaries on components that use Note( boundaries in App)
   static propTypes = {
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    modified: PropTypes.string.isRequired
   }
 
   static contextType = NotesContext;
@@ -51,8 +50,10 @@ class Note extends Component {
     const { name, id, modified, children } = this.props;
     const { error } = this.state;
 
-    return new Error ('blammo')
-
+    if (error) {
+      return new Error(error)
+    }
+    return new Error(error)
     // return(
     //   <div className="Note">
     //     <h2>

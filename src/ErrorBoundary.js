@@ -6,24 +6,27 @@ class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
 
-   const { history } = props;
-
-    history.listen((location, action) => {
-      if (this.state.hasError) {
-        this.setState({
-          hasError: false,
-        });
-      }
-    });
-
     this.state = {
       hasError: false
     }
+
   }
 
   static getDerivedStateFromError(error) {
     //console.log('error!!!', error)
     return { hasError: true, error: error}
+  }
+
+  componentDidMount() {
+    this.unlisten = this.props.history.listen((location, action) => {
+      if (this.state.hasError) {
+        this.setState({ hasError: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unlisten();
   }
 
   render() {
