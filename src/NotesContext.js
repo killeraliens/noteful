@@ -9,12 +9,22 @@ const NotesContext =  React.createContext({
   addNote: () => {}
 })
 
-//Is this where I use propTypes validators for a Context?
-//Should my context objects be more specialized?
-
-// NotesContext.Provider.propTypes = {
-//   notes: PropTypes.array,
-//   folders: PropTypes.array
-// }
+//Is this right?
+NotesContext.Provider.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    folderId: PropTypes.string,
+    modified: PropTypes.string,
+    content: PropTypes.string
+  })),
+  folders: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.number
+  })),
+  deleteNote: PropTypes.func,
+  addFolder: PropTypes.func,
+  addNote: PropTypes.func
+}
 
 export default NotesContext;

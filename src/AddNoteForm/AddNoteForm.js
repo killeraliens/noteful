@@ -1,48 +1,38 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import NotesContext from '../NotesContext'
 import './AddNoteForm.css';
 import Button from '../Button/Button';
+import ValidationError from '../ValidationError/ValidationError'
 import ReactRouterPropTypes from 'react-router-prop-types';
+
 
 class AddNoteForm extends Component {
   static contextType = NotesContext;
 
-  static defaultProps = {
-    history: {push: () => {}}
-  }
-
   static propTypes = {
-    history: ReactRouterPropTypes.history
+    history: ReactRouterPropTypes.history.isRequired
   }
 
   state = {
-      "name": "",
-      "folderId": "",
-      "content": ""
+      name: {value: '', touched: false},
+      folderId: {value: '', touched: false},
+      content: {value: '', touched: false}
   }
 
-  updateName = (e) => {
+  updateValue = (e) => {
+    const {value, name} = e.target;
     this.setState({
-      name: e.target.value
-    })
-  }
-
-  updateContent = (e) => {
-    this.setState({
-      content: e.target.value
-    })
-  }
-
-  updateFolderId = (e) => {
-    this.setState({
-      folderId: e.target.value
+      [name]: {value, touched: true}
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const newNote = (({name, folderId, content}) => ({name, folderId, content}))(this.state);
+    // const newNote = (({name, folderId, content}) => ({name, folderId, content}))(this.state);
+    const {name, folderId, content } = this.state
+    const newNote = {name: name.value, folderId: folderId.value, content: content.value}
     newNote.modified = JSON.stringify(new Date());
     newNote.id = `NiD${newNote.folderId}${this.context.notes.length + 1}`
 
@@ -66,30 +56,53 @@ class AddNoteForm extends Component {
     })
     .catch(err => {
       this.setState({error: 'Could not post your new note!'})
-      throw new Error(err)
     })
   }
 
+  validateName = () => {
+    const name = this.state.name.value.trim();
+    return name.length === 0
+    ? `Name is required`
+    : null
+  }
+
+  validateFolderId = () => {
+    const folderId = this.state.folderId.value;
+    return folderId === 'None'
+    ? `Must belong to a folder`
+    : null
+  }
+
   render() {
+    const { name, content, folderId} = this.state;
+    const nameError = name.touched && this.validateName();
+    const folderIdError = folderId.touched && this.validateFolderId();
+    if (this.state.error ) {
+      return new Error(this.state.error)
+    }
     return(
         <form onSubmit={this.handleSubmit}>
-          <select name="folderId" id="folderID" onChange={this.updateFolderId}>
-            <option value="None">No Folder Selected</option>
+          <h2>Create New Note</h2>
+          <label htmlFor="folderId">Select a folder*</label>
+          <select name="folderId" id="folderID" onChange={this.updateValue}>
+            <option value="None">None</option>
             { this.context.folders.map((folder) => {
               return <option key={folder.id} value={folder.id}>{folder.name}</option>
             })}
           </select>
-          <label htmlFor="name">Name Your Note</label>
-          <input type="text" value={this.state.name} id="name" name="name" onChange={this.updateName}/>
+          <ValidationError message={this.validateFolderId()} visible={folderIdError}/>
+          <label htmlFor="name">Name Your Note*</label>
+          <input type="text" value={name.value} id="name" name="name" onChange={this.updateValue}/>
+          <ValidationError message={this.validateName()} visible={nameError}/>
           <label htmlFor="content">Note Content</label>
-          <textarea type="text" value={this.state.content} id="content" name="content" onChange={this.updateContent}/>
+          <textarea type="text" value={content.value} id="content" rows='8' name="content" onChange={this.updateValue}/>
           <div className="AddFolder__btn-wrap">
-          <Button tag='button' type='submit' className="Button__add-folder light">Create</Button>
-          <Button tag='button' type='button' className="Button__Cancel">Cancel</Button>
-        </div>
+            <Button tag='button' type='submit' className="Button__add-folder light" disabled={ this.validateName() || this.validateFolderId()}>Create</Button>
+            <Button tag='button' type='button' onClick={() => {this.props.history.goBack()}} className="Button__Cancel">Cancel</Button>
+          </div>
         </form>
     )
   }
 }
 
-export default AddNoteForm;
+export default withRouter(AddNoteForm);

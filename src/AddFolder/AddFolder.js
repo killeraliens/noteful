@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import Button from '../Button/Button';
 import ValidationError from '../ValidationError/ValidationError';
 import NotesContext from '../NotesContext'
+import ReactRouterPropTypes from 'react-router-prop-types';
 import './AddFolder.css';
 
 
 class AddFolder extends Component {
   static contextType = NotesContext;
 
-  static defaultProps = {
-    history: {match: {}}
+  // static defaultProps = {
+  //   history: {match: {}}
+  // }
+
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired
   }
 
   state = {
@@ -87,6 +93,7 @@ class AddFolder extends Component {
             tag='button'
             type='submit'
             className="Button__add-folder light"
+            disabled={this.validateFolderName()}
           >
             Create
           </Button>
@@ -104,4 +111,4 @@ class AddFolder extends Component {
   }
 }
 
-export default AddFolder
+export default withRouter(AddFolder)

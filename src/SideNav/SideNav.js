@@ -1,7 +1,7 @@
 import React from 'react'
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import FolderList from '../FolderList/FolderList';
-import Button from '../Button/Button';
+
 import './SideNav.css';
 
 export default function SideNav(props) {
