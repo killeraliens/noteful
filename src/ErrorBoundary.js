@@ -46,9 +46,8 @@ class ErrorBoundary extends Component {
     if(this.state.hasError) {
       return(
         <div className='ErrorBoundary'>
-          <summary>Something went wrong</summary>
+          <summary>Something went wrong :(</summary>
           {message}
-          {details}
         </div>
       )
     }

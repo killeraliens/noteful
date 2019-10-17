@@ -71,9 +71,10 @@
 
 .ErrorBoundary {
   background-color: rgba(0,0,0,.8);
-  background-color: red;
-  color: hotpink;
+  background-color: hotpink;
+  color: white;
   padding: 16px;
+  font-size: 18px;
 }
 
 
