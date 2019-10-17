@@ -17,10 +17,15 @@ class ErrorBoundary extends Component {
     return { hasError: true, error: error}
   }
 
+  static defaultProps = {
+    history: {listen: () => {}}
+  }
+
+
   componentDidMount() {
     this.unlisten = this.props.history.listen((location, action) => {
       if (this.state.hasError) {
-        this.setState({ hasError: false });
+        this.setState({ hasError: false, error: null });
       }
     });
   }
@@ -34,10 +39,15 @@ class ErrorBoundary extends Component {
       ? <details>{this.state.error.message}</details>
       : null
 
+    const message =  this.state.error && typeof this.state.error === 'string'
+      ? <details>{this.state.error}</details>
+      : null
+
     if(this.state.hasError) {
       return(
         <div className='ErrorBoundary'>
           <summary>Something went wrong</summary>
+          {message}
           {details}
         </div>
       )

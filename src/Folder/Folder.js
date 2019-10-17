@@ -5,10 +5,15 @@ import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
 
 class Folder extends Component {
-   static propTypes = {
-     id: PropTypes.string.isRequired,
-     name: PropTypes.string.isRequired
-   }
+  static defaultProps = {
+    className: ''
+  }
+
+  static propTypes = {
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      className: PropTypes.string
+  }
 
   render() {
     const { id, name, className } = this.props;

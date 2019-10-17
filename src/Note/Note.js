@@ -13,7 +13,8 @@ class Note extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    modified: PropTypes.string.isRequired
+    modified: PropTypes.string,
+    followupDeleteNote: PropTypes.func
   }
 
   static contextType = NotesContext;
@@ -35,13 +36,14 @@ class Note extends Component {
       if(!res.ok) {
         throw new Error(res)
       }
+      this.setState({error: null})
     })
     .then(() => {
       this.context.deleteNote(noteId);
       this.props.followupDeleteNote(noteId);
     })
     .catch(err => {
-      this.setState({error: err})
+      this.setState({error: 'Problem handling note deletion'})
     })
   }
 
@@ -53,25 +55,25 @@ class Note extends Component {
     if (error) {
       return new Error(error)
     }
-    return new Error(error)
-    // return(
-    //   <div className="Note">
-    //     <h2>
-    //      <Link to={`/note/${id}`}>
-    //       { name }
-    //      </Link>
-    //     </h2>
-    //     <span>{ modified ? `modified ${modified}` : null}</span>
-    //     {children}
-    //     <Button
-    //           tag='button'
-    //           onClick={this.handleDeleteNoteReq}
-    //           className='NoteList__button'
-    //     >
-    //       Delete
-    //     </Button>
-    //   </div>
-    // )
+
+    return(
+      <div className="Note">
+        <h2>
+         <Link to={`/note/${id}`}>
+          { name }
+         </Link>
+        </h2>
+        <span>{ modified ? `modified ${modified}` : null}</span>
+        {children}
+        <Button
+              tag='button'
+              onClick={this.handleDeleteNoteReq}
+              className='NoteList__button'
+        >
+          Delete
+        </Button>
+      </div>
+    )
   }
 }
 

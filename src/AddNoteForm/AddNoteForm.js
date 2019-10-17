@@ -2,12 +2,17 @@ import React, {Component} from 'react'
 import NotesContext from '../NotesContext'
 import './AddNoteForm.css';
 import Button from '../Button/Button';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 class AddNoteForm extends Component {
   static contextType = NotesContext;
 
   static defaultProps = {
-    history: {match: {}}
+    history: {push: () => {}}
+  }
+
+  static propTypes = {
+    history: ReactRouterPropTypes.history
   }
 
   state = {
@@ -70,8 +75,8 @@ class AddNoteForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <select name="folderId" id="folderID" onChange={this.updateFolderId}>
             <option value="None">No Folder Selected</option>
-            { this.context.folders.map(folder => {
-              return <option value={folder.id}>{folder.name}</option>
+            { this.context.folders.map((folder) => {
+              return <option key={folder.id} value={folder.id}>{folder.name}</option>
             })}
           </select>
           <label htmlFor="name">Name Your Note</label>

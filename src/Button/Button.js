@@ -12,3 +12,7 @@ export default function Button(props) {
 Button.defaultProps = {
   tag: 'a'
 }
+
+Button.propTypes = {
+
+}

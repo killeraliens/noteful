@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import Folder from '../Folder/Folder';
 import './FolderList.css'
 import NotesContext from '../NotesContext';
+import ReactRouterPropTypes from 'react-router-prop-types';
+// import PropTypes from 'prop-types'
 
 function FolderList(props) {
 
@@ -20,10 +20,6 @@ function FolderList(props) {
         let noteSelectedFolder = noteSelected
           ? value.folders.find(folder => folder.id === noteSelected.folderId)
           : null
-
-        // let backButton = noteSelected
-        //   ? <Button tag='button' onClick={() => props.history.goBack()} className='Button__back FolderList__Btn'>Back</Button>
-        //   : null
 
         let folderLinks = value.folders.length > 0
           ? value.folders.map(folder => {
@@ -62,6 +58,10 @@ function FolderList(props) {
 
 FolderList.defaultProps = {
   match: { params: {} }
+}
+
+FolderList.propTypes = {
+  match: ReactRouterPropTypes.match,
 }
 
 export default FolderList

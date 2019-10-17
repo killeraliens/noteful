@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import SideNav from './SideNav/SideNav';
 import NoteList from './NoteList/NoteList';
 import NoteShow from './NoteShow/NoteShow';
@@ -8,7 +8,6 @@ import AddFolder from './AddFolder/AddFolder';
 import AddNoteForm from './AddNoteForm/AddNoteForm'
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import ErrorBoundary from './ErrorBoundary'
-import Button from './Button/Button'
 import './App.css';
 //import Folders from './dummyStore.js';
 import NotesContext from './NotesContext';
@@ -36,7 +35,6 @@ class App extends Component {
         })
       })
       .catch(err => {
-        //console.log('error loading from local, state not set', err)
         this.setState({ error: err})
       })
   }
@@ -136,7 +134,7 @@ class App extends Component {
                       <Route render={(props) => {
                         return(
                           <ErrorBoundary>
-                            <NotFoundPage  {...props}/>
+                            <NotFoundPage  message="Page not found :(" {...props}/>
                           </ErrorBoundary>
                         )
                       }}/>
