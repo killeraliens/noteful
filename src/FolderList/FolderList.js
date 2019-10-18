@@ -4,8 +4,7 @@ import Button from '../Button/Button'
 import Folder from '../Folder/Folder';
 import './FolderList.css'
 import NotesContext from '../NotesContext';
-import ReactRouterPropTypes from 'react-router-prop-types';
-// import PropTypes from 'prop-types'
+//import ReactRouterPropTypes from 'react-router-prop-types';
 
 function FolderList(props) {
 
@@ -60,8 +59,8 @@ FolderList.defaultProps = {
   match: { params: {} }
 }
 
-FolderList.propTypes = {
-  match: ReactRouterPropTypes.match,
-}
+// FolderList.propTypes = {
+//   match: ReactRouterPropTypes.match,
+// }
 
 export default FolderList

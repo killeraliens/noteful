@@ -2,7 +2,7 @@ import React from 'react'
 import './NoteList.css'
 import NotesContext from '../NotesContext';
 import Note from '../Note/Note'
-import ReactRouterPropTypes from 'react-router-prop-types';
+//import ReactRouterPropTypes from 'react-router-prop-types';
 
 export default function NoteList(props) {
 
@@ -29,9 +29,9 @@ NoteList.defaultProps = {
   match: {params: {}}
 }
 
-NoteList.propTypes = {
-  match: ReactRouterPropTypes.match,
-}
+// NoteList.propTypes = {
+//   match: ReactRouterPropTypes.match,
+// }
 
 
 
