@@ -35,14 +35,14 @@ function FolderList(props) {
 
         return(
           <div className="FolderList">
-            <ul>
+            <React.Fragment>
               {folderLinks}
-            </ul>
+            </React.Fragment>
             <div className="FolderList__button-wrap">
               <Button
                 tag={Link}
                 to="/add-folder"
-                className='Button__add-folder FolderList__Btn'
+                className="Button__add-folder FolderList__Btn"
                 disabled={props.match.path === '/add-folder'}
               >
                 Add Folder
@@ -56,7 +56,7 @@ function FolderList(props) {
 }
 
 FolderList.defaultProps = {
-  match: { params: {} }
+  match: { params: {}, path: {} }
 }
 
 // FolderList.propTypes = {

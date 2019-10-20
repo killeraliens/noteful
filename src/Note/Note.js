@@ -58,11 +58,10 @@ class Note extends Component {
 
     return(
       <div className="Note">
-        <h2>
          <Link to={`/note/${id}`}>
-          { name }
+           <h2>{ name }</h2>
          </Link>
-        </h2>
+
         <span>{ modified ? `modified ${modified}` : null}</span>
         {children}
         <Button

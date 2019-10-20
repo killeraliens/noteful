@@ -84,21 +84,72 @@ class AddNoteForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <h2>Create New Note</h2>
           <label htmlFor="folderId">Select a folder*</label>
-          <select name="folderId" id="folderID" onChange={this.updateValue}>
+          <select
+            name="folderId"
+            id="folderID"
+            onChange={this.updateValue}
+            aria-label="Select A Folder"
+            aria-required="true"
+            aria-describedby="folderIdError"
+            aria-invalid={folderIdError}
+          >
             <option value="None">None</option>
             { this.context.folders.map((folder) => {
               return <option key={folder.id} value={folder.id}>{folder.name}</option>
             })}
           </select>
-          <ValidationError message={this.validateFolderId()} visible={folderIdError}/>
+          <ValidationError
+            id="folderIdError"
+            message={this.validateFolderId()}
+            visible={folderIdError}
+          />
           <label htmlFor="name">Name Your Note*</label>
-          <input type="text" value={name.value} id="name" name="name" onChange={this.updateValue}/>
-          <ValidationError message={this.validateName()} visible={nameError}/>
+          <input
+            type="text"
+            value={name.value}
+            id="name"
+            name="name"
+            onChange={this.updateValue}
+            aria-label="Note Name or Title"
+            aria-required="true"
+            aria-describedby="nameError"
+            aria-invalid={nameError}
+          />
+          <ValidationError
+            id="nameError"
+            message={this.validateName()}
+            visible={nameError}
+          />
           <label htmlFor="content">Note Content</label>
-          <textarea type="text" value={content.value} id="content" rows='8' name="content" onChange={this.updateValue}/>
+          <textarea
+            type="text"
+            value={content.value}
+            id="content"
+            rows='8'
+            name="content"
+            onChange={this.updateValue}
+            aria-label="Note Content"
+            aria-required="false"
+          />
           <div className="AddFolder__btn-wrap">
-            <Button tag='button' type='submit' className="Button__add-folder light" disabled={ this.validateName() || this.validateFolderId()}>Create</Button>
-            <Button tag='button' type='button' onClick={() => {this.props.history.goBack()}} className="Button__Cancel">Cancel</Button>
+            <Button
+              tag='button'
+              type='submit'
+              aria-label="Submit New Note"
+              className="Button__add-folder light"
+              disabled={ this.validateName() || this.validateFolderId()}
+            >
+              Create
+            </Button>
+            <Button
+              tag='button'
+              type='button'
+              aria-label="Cancel New Note"
+              onClick={() => {this.props.history.goBack()}}
+              className="Button__Cancel"
+            >
+              Cancel
+            </Button>
           </div>
         </form>
     )

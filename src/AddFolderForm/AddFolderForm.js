@@ -88,7 +88,7 @@ class AddFolder extends Component {
           onChange={this.updateValue}
           aria-label="Folder Name"
           aria-required="true"
-          aria-described-by="nameError"
+          aria-describedby="nameError"
           aria-invalid={nameError}
         />
         <ValidationError
@@ -100,6 +100,7 @@ class AddFolder extends Component {
           <Button
             tag='button'
             type='submit'
+            aria-label="Create New Folder"
             className="Button__add-folder light"
             disabled={this.validateFolderName()}
           >
@@ -108,6 +109,7 @@ class AddFolder extends Component {
           <Button
             tag='button'
             type='button'
+            aria-label="Cancel New Folder"
             className="Button__Cancel"
             onClick={() => {this.props.history.goBack()}}
           >
