@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 import ValidationError from '../ValidationError/ValidationError';
 import NotesContext from '../NotesContext'
 import ReactRouterPropTypes from 'react-router-prop-types';
-import './AddFolder.css';
+import './AddFolderForm.css';
 
 
 class AddFolder extends Component {
@@ -86,8 +86,16 @@ class AddFolder extends Component {
           name='folderName'
           value={this.state.folderName.value}
           onChange={this.updateValue}
+          aria-label="Folder Name"
+          aria-required="true"
+          aria-described-by="nameError"
+          aria-invalid={nameError}
         />
-        <ValidationError message={this.validateFolderName()} visible={nameError}/>
+        <ValidationError
+          id="nameError"
+          message={this.validateFolderName()}
+          visible={nameError}
+        />
         <div className="AddFolder__btn-wrap">
           <Button
             tag='button'

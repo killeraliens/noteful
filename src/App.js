@@ -4,7 +4,7 @@ import SideNav from './SideNav/SideNav';
 import NoteList from './NoteList/NoteList';
 import NoteShow from './NoteShow/NoteShow';
 import Header from './Header/Header';
-import AddFolder from './AddFolder/AddFolder';
+import AddFolderForm from './AddFolderForm/AddFolderForm';
 import AddNoteForm from './AddNoteForm/AddNoteForm'
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import ErrorBoundary from './ErrorBoundary'
@@ -120,7 +120,7 @@ class App extends Component {
                       <Route path='/add-folder' render={(props) => {
                         return(
                           <ErrorBoundary>
-                            <AddFolder  {...props}/>
+                            <AddFolderForm  {...props}/>
                          </ErrorBoundary>
                         )
                       }}/>
@@ -134,7 +134,7 @@ class App extends Component {
                       <Route render={(props) => {
                         return(
                           <ErrorBoundary>
-                            <NotFoundPage  message="Page not found :(" {...props}/>
+                            <NotFoundPage  message="Page not found." {...props}/>
                           </ErrorBoundary>
                         )
                       }}/>
