@@ -4,7 +4,7 @@ import NotesContext from '../NotesContext'
 import Button from '../Button/Button'
 import Note from '../Note/Note'
 import NotFoundPage from '../NotFoundPage/NotFoundPage'
-import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types'
 
 
 export default function NoteShow(props) {
@@ -35,10 +35,18 @@ export default function NoteShow(props) {
 
 NoteShow.defaultProps = {
   match: { params: {}},
+  note: {}
 }
 
 NoteShow.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  match: ReactRouterPropTypes.match,
+  history: PropTypes.shape({
+      push: PropTypes.func,
+    }),
+  match: PropTypes.shape({
+      params: PropTypes.object,
+  }),
+  note: PropTypes.shape({
+    id: PropTypes.string
+  })
 }
 

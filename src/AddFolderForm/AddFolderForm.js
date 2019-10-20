@@ -10,10 +10,6 @@ import './AddFolderForm.css';
 class AddFolder extends Component {
   static contextType = NotesContext;
 
-  // static defaultProps = {
-  //   history: {match: {}}
-  // }
-
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired
   }

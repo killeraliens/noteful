@@ -10,7 +10,7 @@ class Folder extends Component {
   }
 
   static propTypes = {
-      id: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       name: PropTypes.string.isRequired,
       className: PropTypes.string
   }

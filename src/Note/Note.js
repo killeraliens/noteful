@@ -11,7 +11,7 @@ class Note extends Component {
   }
 
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     name: PropTypes.string.isRequired,
     modified: PropTypes.string,
     followupDeleteNote: PropTypes.func
