@@ -30,8 +30,8 @@ class AddFolder extends Component {
     e.preventDefault();
 
     const newFolder = {
-      name: this.state.folderName.value,
-      id: `FiD${this.context.folders.length + 1}`
+      folder_name: this.state.folderName.value
+      // id: `FiD${this.context.folders.length + 1}`
     };
 
     const options = {
@@ -42,19 +42,19 @@ class AddFolder extends Component {
       }
 
     }
-    fetch(`http://localhost:9090/folders`, options)
+    fetch(`http://localhost:8000/api/folders`, options)
     .then(res => {
       if (!res.ok) {
-        throw new Error(res)
+        return res.json().then(error => Promise.reject(error))
       }
-      console.log('post ok')
+      return res.json()
     })
-    .then(() => {
-      this.context.addFolder(newFolder)
-      this.props.history.push(`folder/${newFolder.id}`)
+    .then(resFolder => {
+      this.context.addFolder(resFolder)
+      this.props.history.push(`folder/${resFolder.id}`)
     })
-    .catch(err => {
-      this.setState({error: err})
+    .catch(error => {
+      this.setState({error})
       new Error('Problem adding folder')
     })
 
@@ -70,7 +70,9 @@ class AddFolder extends Component {
   }
 
   render() {
-    const nameError = this.state.folderName.touched && this.validateFolderName();
+    const nameError = this.state.folderName.touched && this.validateFolderName()
+      ? true
+      : false;
     return(
       <form className='AddFolder' onSubmit={this.handleSubmit}>
         { this.state.error ? this.state.error.message : null}

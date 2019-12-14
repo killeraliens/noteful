@@ -40,8 +40,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchData('http://localhost:9090/folders', 'folders')
-    this.fetchData('http://localhost:9090/notes', 'notes')
+    this.fetchData('http://localhost:8000/api/folders', 'folders')
+    this.fetchData('http://localhost:8000/api/notes', 'notes')
   }
 
 

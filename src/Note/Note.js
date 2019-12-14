@@ -12,6 +12,7 @@ class Note extends Component {
 
   static propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    //id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     modified: PropTypes.string,
     followupDeleteNote: PropTypes.func
@@ -31,19 +32,20 @@ class Note extends Component {
       }
     }
 
-    fetch(`http://localhost:9090/notes/${noteId}`, options)
+    fetch(`http://localhost:8000/api/notes/${noteId}`, options)
     .then(res => {
       if(!res.ok) {
-        throw new Error(res)
+        return res.json().then(error => Promise.reject(error))
       }
       this.setState({error: null})
     })
     .then(() => {
       this.context.deleteNote(noteId);
+      debugger
       this.props.followupDeleteNote(noteId);
     })
-    .catch(err => {
-      this.setState({error: 'Problem handling note deletion'})
+    .catch(error => {
+      this.setState({error})
     })
   }
 

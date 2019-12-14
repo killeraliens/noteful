@@ -17,7 +17,7 @@ function FolderList(props) {
           : null;
 
         let noteSelectedFolder = noteSelected
-          ? value.folders.find(folder => folder.id === noteSelected.folderId)
+          ? value.folders.find(folder => folder.id === noteSelected.folder_id)
           : null
 
         let folderLinks = value.folders.length > 0
@@ -26,7 +26,7 @@ function FolderList(props) {
               <Folder
                 key={folder.id}
                 id={folder.id}
-                name={folder.name}
+                name={folder.folder_name}
                 className={`FolderList__li__nav-link ${noteSelectedFolder && noteSelectedFolder.id === folder.id ? 'active' : ''}`}
               />
             )

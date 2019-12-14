@@ -10,10 +10,12 @@ export default function NoteList(props) {
     <NotesContext.Consumer>
       {(value) => {
         const notes = props.match.params.folderId
-          ? value.notes.filter(note => note.folderId === props.match.params.folderId)
-          : value.notes
+        ? value.notes.filter(note => note.folder_id == props.match.params.folderId)
+        : value.notes
+        //debugger
+
         const noteListItems = notes.length > 0
-          ? notes.map(note => <Note key={note.id}  id={note.id} name={note.name} modified={note.modified}/>)
+          ? notes.map(note => <Note key={note.id}  id={note.id} name={note.note_name} modified={note.modified}/>)
           : <p> No Notes Yet!</p>
         return(
           <div className="NoteList">

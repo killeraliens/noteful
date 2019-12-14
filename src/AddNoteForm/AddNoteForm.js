@@ -32,9 +32,9 @@ class AddNoteForm extends Component {
 
     // const newNote = (({name, folderId, content}) => ({name, folderId, content}))(this.state);
     const {name, folderId, content } = this.state
-    const newNote = {name: name.value, folderId: folderId.value, content: content.value}
-    newNote.modified = JSON.stringify(new Date());
-    newNote.id = `NiD${newNote.folderId}${this.context.notes.length + 1}`
+    const newNote = {note_name: name.value, folder_id: folderId.value, content: content.value}
+    //newNote.modified = JSON.stringify(new Date());
+    //newNote.id = `NiD${newNote.folderId}${this.context.notes.length + 1}`
 
     const options = {
       method: 'POST',
@@ -43,19 +43,21 @@ class AddNoteForm extends Component {
         'content-type': 'application/json'
       }
     }
-    fetch(`http://localhost:9090/notes`, options)
+
+    fetch(`http://localhost:8000/api/notes`, options)
     .then(res => {
       if (!res.ok) {
-        throw new Error(res)
+        return res.json().then(error => Promise.reject(error))
       }
-      console.log('post ok')
+      return res.json()
     })
-    .then(() => {
+    .then(newNote => {
       this.context.addNote(newNote)
       this.props.history.push(`note/${newNote.id}`)
     })
-    .catch(err => {
-      this.setState({error: 'Could not post your new note!'})
+    .catch(error => {
+      console.log('error caughtt', error)
+      this.setState({error})
     })
   }
 
@@ -76,12 +78,13 @@ class AddNoteForm extends Component {
   render() {
     const { name, content, folderId} = this.state;
     const nameError = name.touched && this.validateName();
-    const folderIdError = folderId.touched && this.validateFolderId();
-    if (this.state.error ) {
-      return new Error(this.state.error)
-    }
+    const folderIdError = folderId.touched && this.validateFolderId() ? true : false;
+    // if (this.state.error ) {
+    //  return this.state.error
+    // }
+    const error = this.state.error && this.state.error.error ? this.state.error.error.message : null;
     return(
-        <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
           <h2>Create New Note</h2>
           <label htmlFor="folderId">Select a folder*</label>
           <select
@@ -95,7 +98,7 @@ class AddNoteForm extends Component {
           >
             <option value="None">None</option>
             { this.context.folders.map((folder) => {
-              return <option key={folder.id} value={folder.id}>{folder.name}</option>
+              return <option key={folder.id} value={folder.id}>{folder.folder_name}</option>
             })}
           </select>
           <ValidationError
@@ -151,6 +154,7 @@ class AddNoteForm extends Component {
               Cancel
             </Button>
           </div>
+          {error}
         </form>
     )
   }

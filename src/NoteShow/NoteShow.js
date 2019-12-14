@@ -13,7 +13,7 @@ export default function NoteShow(props) {
     <NotesContext.Consumer>
       {value => {
 
-        const note = value.notes.find(note => note.id === props.match.params.noteId) || {};
+        const note = value.notes.find(note => note.id == props.match.params.noteId) || {};
 
         if (!note.id) {
          return <NotFoundPage>Could not find this note!</NotFoundPage>
@@ -21,7 +21,7 @@ export default function NoteShow(props) {
 
         return(
           <div className='NoteShow'>
-            <Note followupDeleteNote={() => props.history.push('/')} name={note.name} id={note.id} modified={note.modified}>
+            <Note followupDeleteNote={() => props.history.push('/')} name={note.note_name} id={note.id} modified={note.modified}>
               <p>{note.content}</p>
               <Button tag='button' onClick={() => props.history.goBack()} className='Button__back FolderList__Btn'>Back</Button>
             </Note>
