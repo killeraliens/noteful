@@ -47,6 +47,5 @@
     "enzyme-to-json": "^3.4.0",
     "react-test-renderer": "^16.9.0",
     "serve": "^11.2.0"
-  },
-  "proxy": "https://desolate-meadow-95722.herokuapp.com"
+  }
 }
