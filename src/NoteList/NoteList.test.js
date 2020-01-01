@@ -72,16 +72,16 @@ describe('NoteList', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it('should return a collection of Notes matching context', () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <NotesContext.Provider value={context}>
-          <NoteList />
-        </NotesContext.Provider>
-      </BrowserRouter>);
+  // it('should return a collection of Notes matching context', () => {
+  //   const wrapper = mount(
+  //     <BrowserRouter>
+  //       <NotesContext.Provider value={context}>
+  //         <NoteList />
+  //       </NotesContext.Provider>
+  //     </BrowserRouter>);
 
-    expect(wrapper.find(Note).length).toBe(2);
-  });
+  //   expect(wrapper.find(Note).length).toBe(2);
+  // });
 
 
 })

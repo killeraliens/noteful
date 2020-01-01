@@ -77,7 +77,7 @@ class AddNoteForm extends Component {
 
   render() {
     const { name, content, folderId} = this.state;
-    const nameError = name.touched && this.validateName();
+    const nameError = name.touched && this.validateName() ? true : false;
     const folderIdError = folderId.touched && this.validateFolderId() ? true : false;
     // if (this.state.error ) {
     //  return this.state.error

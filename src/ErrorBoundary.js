@@ -38,7 +38,7 @@ class ErrorBoundary extends Component {
       ? <details>{this.state.error.message}</details>
       : null
 
-    const message =  this.state.error && typeof this.state.error === 'string'
+    const message = this.state.error && this.state.error.message && typeof this.state.error.message === 'string'
       ? <details>{this.state.error}</details>
       : null
 

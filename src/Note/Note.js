@@ -41,11 +41,11 @@ class Note extends Component {
     })
     .then(() => {
       this.context.deleteNote(noteId);
-      debugger
       this.props.followupDeleteNote(noteId);
     })
     .catch(error => {
-      this.setState({error})
+      this.setState({ error: { message: 'Could not delete your note, check your connection'}})
+      //throw new Error('Could not delete your note, check your connection')
     })
   }
 
@@ -54,12 +54,9 @@ class Note extends Component {
     const { name, id, modified, children } = this.props;
     const { error } = this.state;
 
-    if (error) {
-      return new Error(error)
-    }
-
     return(
       <div className="Note">
+        {error && error.message ? error.message : null}
          <Link to={`/note/${id}`}>
            <h2>{ name }</h2>
          </Link>

@@ -12,7 +12,6 @@ export default function NoteList(props) {
         const notes = props.match.params.folderId
         ? value.notes.filter(note => note.folder_id == props.match.params.folderId)
         : value.notes
-        //debugger
 
         const noteListItems = notes.length > 0
           ? notes.map(note => <Note key={note.id}  id={note.id} name={note.note_name} modified={note.modified}/>)

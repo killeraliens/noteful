@@ -9,7 +9,6 @@ import AddNoteForm from './AddNoteForm/AddNoteForm'
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import ErrorBoundary from './ErrorBoundary'
 import './App.css';
-//import Folders from './dummyStore.js';
 import NotesContext from './NotesContext';
 
 
