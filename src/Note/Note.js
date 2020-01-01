@@ -45,7 +45,6 @@ class Note extends Component {
     })
     .catch(error => {
       this.setState({ error: { message: 'Could not delete your note, check your connection'}})
-
     })
   }
 
