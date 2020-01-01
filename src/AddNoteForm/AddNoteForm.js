@@ -44,7 +44,7 @@ class AddNoteForm extends Component {
       }
     }
 
-    fetch(`${config.API_ENDPOINT}/notes`, options)
+    fetch(`${config.API_ENDPOINT}/api/notes`, options)
     .then(res => {
       if (!res.ok) {
         return res.json().then(error => Promise.reject(error))

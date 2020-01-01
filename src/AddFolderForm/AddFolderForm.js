@@ -43,7 +43,7 @@ class AddFolder extends Component {
       }
 
     }
-    fetch(`${config.API_ENDPOINT}/folders`, options)
+    fetch(`${config.API_ENDPOINT}/api/folders`, options)
     .then(res => {
       if (!res.ok) {
         return res.json().then(error => Promise.reject(error))

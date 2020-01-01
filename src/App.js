@@ -40,8 +40,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchData(`${config.API_ENDPOINT}/folders`, 'folders')
-    this.fetchData(`${config.API_ENDPOINT}/notes`, 'notes')
+    this.fetchData(`${config.API_ENDPOINT}/api/folders`, 'folders')
+    this.fetchData(`${config.API_ENDPOINT}/api/notes`, 'notes')
   }
 
 

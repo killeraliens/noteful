@@ -33,7 +33,7 @@ class Note extends Component {
       }
     }
 
-    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, options)
+    fetch(`${config.API_ENDPOINT}/api/notes/${noteId}`, options)
     .then(res => {
       if(!res.ok) {
         return res.json().then(error => Promise.reject(error))
