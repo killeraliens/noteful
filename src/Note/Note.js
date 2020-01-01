@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import NotesContext from '../NotesContext';
 import Button from '../Button/Button'
 import PropTypes from 'prop-types'
+import config from '../config'
 
 
 class Note extends Component {
@@ -32,7 +33,7 @@ class Note extends Component {
       }
     }
 
-    fetch(`http://localhost:8000/api/notes/${noteId}`, options)
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, options)
     .then(res => {
       if(!res.ok) {
         return res.json().then(error => Promise.reject(error))

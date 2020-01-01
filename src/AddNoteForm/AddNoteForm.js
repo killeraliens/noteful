@@ -5,7 +5,7 @@ import './AddNoteForm.css';
 import Button from '../Button/Button';
 import ValidationError from '../ValidationError/ValidationError'
 import ReactRouterPropTypes from 'react-router-prop-types';
-
+import config from '../config'
 
 class AddNoteForm extends Component {
   static contextType = NotesContext;
@@ -44,7 +44,7 @@ class AddNoteForm extends Component {
       }
     }
 
-    fetch(`http://localhost:8000/api/notes`, options)
+    fetch(`${config.API_ENDPOINT}/notes`, options)
     .then(res => {
       if (!res.ok) {
         return res.json().then(error => Promise.reject(error))

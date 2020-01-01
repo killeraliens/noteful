@@ -5,6 +5,7 @@ import ValidationError from '../ValidationError/ValidationError';
 import NotesContext from '../NotesContext'
 import ReactRouterPropTypes from 'react-router-prop-types';
 import './AddFolderForm.css';
+import config from '../config'
 
 
 class AddFolder extends Component {
@@ -42,7 +43,7 @@ class AddFolder extends Component {
       }
 
     }
-    fetch(`http://localhost:8000/api/folders`, options)
+    fetch(`${config.API_ENDPOINT}/folders`, options)
     .then(res => {
       if (!res.ok) {
         return res.json().then(error => Promise.reject(error))

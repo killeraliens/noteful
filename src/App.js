@@ -10,6 +10,7 @@ import NotFoundPage from './NotFoundPage/NotFoundPage';
 import ErrorBoundary from './ErrorBoundary'
 import './App.css';
 import NotesContext from './NotesContext';
+import config from './config'
 
 
 class App extends Component {
@@ -39,8 +40,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchData('http://localhost:8000/api/folders', 'folders')
-    this.fetchData('http://localhost:8000/api/notes', 'notes')
+    this.fetchData(`${config.API_ENDPOINT}/folders`, 'folders')
+    this.fetchData(`${config.API_ENDPOINT}/notes`, 'notes')
   }
 
 
