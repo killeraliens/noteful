@@ -45,7 +45,7 @@ class Note extends Component {
     })
     .catch(error => {
       this.setState({ error: { message: 'Could not delete your note, check your connection'}})
-      //throw new Error('Could not delete your note, check your connection')
+
     })
   }
 
@@ -53,10 +53,10 @@ class Note extends Component {
   render() {
     const { name, id, modified, children } = this.props;
     const { error } = this.state;
-
+    const errorMessage = error && error.message ? error.message : null
     return(
       <div className="Note">
-        {error && error.message ? error.message : null}
+        {errorMessage}
          <Link to={`/note/${id}`}>
            <h2>{ name }</h2>
          </Link>
