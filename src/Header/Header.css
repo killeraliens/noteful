@@ -3,7 +3,7 @@
   height: 100%;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 5fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-areas: 'title addNoteFab';
 }
 
@@ -20,4 +20,13 @@
   color: white !important;
   font-weight: bold;
   margin: 0 16px;
+}
+
+@media screen and (max-width: 600px) {
+  .Header {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'title' 'addNoteFab';
+  }
+
 }

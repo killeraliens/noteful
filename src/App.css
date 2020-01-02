@@ -81,10 +81,13 @@
 
 @media screen and (max-width: 600px) {
   .App {
-    grid-template-rows: 80px auto auto 100px;
+    grid-template-rows: 160px auto auto ;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: 'header header' 'sidenav sidenav' 'main main';
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    height: auto
   }
+
 
   .App > main {
     overflow: visible;

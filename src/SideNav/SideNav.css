@@ -5,3 +5,8 @@
 }
 
 
+@media screen and (max-width: 600px) {
+  .SideNav {
+    min-height: auto;
+  }
+}
